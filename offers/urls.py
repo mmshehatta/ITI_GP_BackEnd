@@ -15,6 +15,10 @@ urlpatterns=[
     path('offerid/<int:id>',views.offerApibyId),
     path('offerByOfferId/<int:id>',views.offerApibyOfferId),
     path('offerByuserId/<int:id>',views.offerByUserId),
+    path('categoryById/<int:id>',views.getCatById),
+
+
+    # categoryById
 
 
     # path('SaveFile', views.SaveFile),
