@@ -42,6 +42,14 @@ def categoryApi(request,id=0):
 
 
 @csrf_exempt
+def getCatById(request ,id):
+    if request.method=='GET':
+        category = Category.objects.get(id=id)
+        categorys_serializer = CategorySerializer(category)
+        return JsonResponse(categorys_serializer.data, safe=False)
+    
+
+@csrf_exempt
 def offerApi(request,id=0):
     if request.method=='GET':
         offers = Offer.objects.all()

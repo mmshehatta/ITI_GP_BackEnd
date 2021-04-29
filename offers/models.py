@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from phone_field import PhoneField
 
 from users.models import User
 from datetime import datetime
@@ -14,11 +15,12 @@ class Offer(models.Model):
     name = models.CharField(max_length=100 , null=False , blank=False , unique=False)
     # slug = models.SlugField(unique=True,null=True,blank=True )
     description = models.CharField(max_length=500 , null=False , blank=False , unique=False)
-    image = models.ImageField(upload_to='media' , null=True , blank=True)
+    image = models.ImageField(upload_to='media' ,null=True , blank=True)
     place = models.CharField(max_length=100 , null=False , blank=False , unique=False)
     # log = models.DecimalField(max_digits=9, decimal_places=6)
     # lat = models.DecimalField(max_digits=9, decimal_places=6)
     date = models.DateField(default=datetime.now, blank=True)
+    phone = PhoneField(blank=True)
 
     # user_relation
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
