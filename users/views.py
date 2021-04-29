@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from .models import User
-from .serializers import UserSerializer
+from .serializers import UserSerializer,UserSerializer2
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 import jwt, datetime
+from django.views.decorators.csrf import csrf_exempt
+from django.http.response import JsonResponse
+
 
 # Create your views here.
 
@@ -78,3 +81,19 @@ class LogoutView(APIView):
             'message': 'success'
         }
         return response
+
+
+@csrf_exempt
+def getUserById(request ,id):
+    if request.method=='GET':
+        user = User.objects.get(id=id)
+        User_serializer = UserSerializer2(user)
+        return JsonResponse(User_serializer.data, safe=False)
+
+
+@csrf_exempt
+def allUsers(request):
+    if request.method=='GET':
+        users = User.objects.all()
+        users_serializer = UserSerializer2(users, many=True)
+        return JsonResponse(users_serializer.data, safe=False)
