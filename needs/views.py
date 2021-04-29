@@ -48,3 +48,11 @@ def getNeedByUserId(request,id=0):
        needs = Need.objects.filter(user_id=id)
        needs_serializer = NeedSerializer(needs, many=True)
        return JsonResponse(needs_serializer.data, safe=False)
+
+
+@csrf_exempt
+def getNeedByOfferId(request,id=0):
+    if request.method=='GET':
+       needs = Need.objects.filter(offer_id=id)
+       needs_serializer = NeedSerializer(needs, many=True)
+       return JsonResponse(needs_serializer.data, safe=False)

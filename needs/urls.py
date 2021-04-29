@@ -10,6 +10,8 @@ urlpatterns=[
     path('need/', views.needApi),
     path('need/<int:id>',views.needApi),
     path('needByUserId/<int:id>',views.getNeedByUserId),
+    path('needByOfferId/<int:id>',views.getNeedByOfferId),
+
 
 
 ]
