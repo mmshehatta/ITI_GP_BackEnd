@@ -10,6 +10,8 @@ class User(AbstractUser):
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length = 254, unique=True)
     password = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='media' , null=True , blank=True)
+    is_admin = models.BooleanField(default=False) 
 
     # phone = PhoneField(blank=True, help_text='Contact phone number')
     # image = models.ImageField(upload_to='users/UserProfile/images' , null=True , blank=True)
